@@ -4,6 +4,7 @@
 #include "timer.h"
 #include "uart_manager.h"
 #include "string.h"
+#include "gsm.h"
 
 int main(void)
 {			
@@ -15,9 +16,12 @@ int main(void)
 	delay_ms(1000);
 	
 	LOGln("***** Warehouse monitoring system start *****");
+	
 	while(1)
 	{
-
+		if(is_time5000ms()) {
+			send_at_command("AT", "OK", 2, 100);
+		}
 	}
 }
 

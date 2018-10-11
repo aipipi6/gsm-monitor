@@ -365,7 +365,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>STM32F10X_MD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Drivers\Device\IIC;..\Drivers\Device\GPIO;..\Drivers\Device\TIM;..\Drivers\Device\24CXX;..\Projects;..\STM32F10x_lib\CMSIS;..\STM32F10x_lib\FWLib\inc;..\Projects;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\Drivers;..\APP;..\APP\common;..\APP\uart;..\APP\msgParser;..\APP\fontManager;..\APP\led</IncludePath>
+              <IncludePath>..\Drivers\Device\IIC;..\Drivers\Device\GPIO;..\Drivers\Device\TIM;..\Drivers\Device\24CXX;..\Projects;..\STM32F10x_lib\CMSIS;..\STM32F10x_lib\FWLib\inc;..\Projects;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\Drivers;..\APP;..\APP\common;..\APP\uart;..\APP\gsm;..\APP\fontManager;..\APP\led</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>

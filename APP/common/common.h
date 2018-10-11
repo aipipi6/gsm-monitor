@@ -10,7 +10,6 @@
  * 日志开关
  */
 #define LOG_SWITCH 1
-#define CAN_LOG_SWITCH 0
 
 #if LOG_SWITCH
 	#define LOG(fmt, x...)		printf(fmt, ##x)
@@ -19,6 +18,9 @@
 	#define LOG(fmt, ...)
 	#define LOGln(fmt, x...)
 #endif
+
+
+
 
 #define TRUE		1
 #define FALSE		0

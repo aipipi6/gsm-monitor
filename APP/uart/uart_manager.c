@@ -7,7 +7,7 @@
 char   UART1_Buff[UART1_Buff_SIZE];
 u16  UART1_BuffIndex = 0;
 
-char *get_uart_buff(u8 *len)
+char *get_uart_buff(u16 *len)
 {
 	if(len != NULL) {
 		*len = UART1_BuffIndex;

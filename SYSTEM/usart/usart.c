@@ -25,16 +25,10 @@ void _sys_exit(int x)
 	x = x; 
 } 
 //重定义fputc函数 
-//int fputc(int ch, FILE *f)
-//{      
-//	while((USART3->SR & 0x40) == 0){}//循环发送,直到发送完毕   
-//    USART3->DR = (u8) ch;      
-//	return ch;
-//}
 int fputc(int ch, FILE *f)
 {      
-	while((USART2->SR & 0x40) == 0){}//循环发送,直到发送完毕   
-    USART2->DR = (u8) ch;      
+	while((DEBUG_UART->SR & 0x40) == 0){}//循环发送,直到发送完毕   
+    DEBUG_UART->DR = (u8) ch;      
 	return ch;
 }
 #endif 

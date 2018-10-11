@@ -36,6 +36,8 @@
 #define EN_USART2_RX   0		//使能（1）/禁止（0）串口1接收
 #define EN_USART3_RX   0		//使能（1）/禁止（0）串口1接收
 
+#define DEBUG_UART		USART2
+
 void USART1_Config(u32 bound);
 void USART2_Config(u32 bound);
 void USART3_Config(u32 bound);
