@@ -3,8 +3,8 @@
 
 #include "common.h"
 
-#define TCP_SERVER_IP		"182.254.216.22"
-#define TCP_SERVER_PORT		8687
+#define TCP_SERVER_IP		"115.28.103.171"
+#define TCP_SERVER_PORT		9096
 
 
 

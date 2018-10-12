@@ -19,8 +19,18 @@ import io.netty.handler.codec.LengthFieldPrepender;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 
-public class TcpServer {
-	public static void start(int port) {
+public class TcpServer extends Thread{
+	
+	private int mPort;
+	
+	public TcpServer(int port) {
+		this.mPort = port;
+	}
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 		// boss线程监听端口，worker线程负责数据读写
 		EventLoopGroup boss = new NioEventLoopGroup();
 		EventLoopGroup worker = new NioEventLoopGroup();
@@ -40,10 +50,10 @@ public class TcpServer {
 				protected void initChannel(SocketChannel socketChannel) throws Exception {
 					// 获取管道
 					ChannelPipeline pipeline = socketChannel.pipeline();
-					// // 字符串解码器
-					// pipeline.addLast(new StringDecoder());
-					// // 字符串编码器
-					// pipeline.addLast(new StringEncoder());
+					// 字符串解码器
+					pipeline.addLast(new StringDecoder());
+					// 字符串编码器
+					pipeline.addLast(new StringEncoder());
 					//pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));
 					//pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));
 					// 处理类
@@ -60,7 +70,7 @@ public class TcpServer {
 			bootstrap.childOption(ChannelOption.TCP_NODELAY, true);
 
 			// 绑定端口
-			ChannelFuture future = bootstrap.bind(port).sync();
+			ChannelFuture future = bootstrap.bind(mPort).sync();
 			System.out.println("Tcp server start ...... ");
 
 			// 等待服务端监听端口关闭
@@ -75,14 +85,12 @@ public class TcpServer {
 		}
 	}
 
-	static class ServerHandler extends SimpleChannelInboundHandler<ByteBuf> {
+	static class ServerHandler extends SimpleChannelInboundHandler<String> {
 
 		@Override
-		protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
+		protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
 			// TODO Auto-generated method stub
-			byte[] result = new byte[msg.readableBytes()];
-			msg.readBytes(result);
-			System.out.println("client response :" + new String(result));
+			System.out.println("client response :" + msg);
 			
 			// ctx.channel().writeAndFlush("i am server !");
 			ctx.channel().flush();

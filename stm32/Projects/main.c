@@ -6,21 +6,23 @@
 #include "string.h"
 #include "gsm.h"
 #include "tcp.h"
-
-char *get_test_msg()
-{
-	static char msg[128];
-	static u32 count = 0;
-	sprintf(msg, "test msg%d", count++);
-	
-	return msg;
-}
+#include "dht11.h"
 
 #define MONITOR_INFO_JSON		\
 	"{"							\
 		"\"temperature\":%d,"	\
-		"\"humidity\":%d"		\		
+		"\"humidity\":%d"		\
 	"}"
+char *get_test_msg()
+{
+	static char msg[128];
+	int tem, hum;
+	dht11_getInfo(&tem, &hum);
+	sprintf(msg, MONITOR_INFO_JSON, tem, hum);
+	
+	return msg;
+}
+
 
 int main(void)
 {			
