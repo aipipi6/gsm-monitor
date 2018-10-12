@@ -5,6 +5,22 @@
 #include "uart_manager.h"
 #include "string.h"
 #include "gsm.h"
+#include "tcp.h"
+
+char *get_test_msg()
+{
+	static char msg[128];
+	static u32 count = 0;
+	sprintf(msg, "test msg%d", count++);
+	
+	return msg;
+}
+
+#define MONITOR_INFO_JSON		\
+	"{"							\
+		"\"temperature\":%d,"	\
+		"\"humidity\":%d"		\		
+	"}"
 
 int main(void)
 {			
@@ -20,7 +36,8 @@ int main(void)
 	while(1)
 	{
 		if(is_time5000ms()) {
-			send_at_command("AT", "OK", 2, 100);
+			char *msg = get_test_msg();
+			TCP_SEND_MSG(msg);
 		}
 	}
 }

@@ -25,6 +25,9 @@
 #define TRUE		1
 #define FALSE		0
 
+#define SUCCESS		0
+#define FAILURE		-1
+
 // STM32 默认是大端模式
 #define IS_BIG_ENDIAN 0
 #if IS_BIG_ENDIAN
